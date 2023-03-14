@@ -1,0 +1,43 @@
+{
+  "name": "@maxbilbow/angularjs2react-cli",
+  "version": "1.0.0-alpha",
+  "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
+  "type": "module",
+  "main": "index.cjs",
+  "bin": "dist/lib/bin/cli.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc --build ./src/lib/tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxbilbow/angularjs2react-cli.git"
+  },
+  "author": "Max Bilbow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxbilbow/angularjs2react-cli/issues"
+  },
+  "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
+  "dependencies": {
+    "@maxbilbow/angularjs2react": "^1.0.0-alpha",
+    "tslog": "^4.8.2",
+    "yargs": "^17.7.1",
+    "typescript": "^5.0.1-rc"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/lodash": "^4.14.191",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.14.6",
+    "@types/yargs": "^17.0.22",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.36.0",
+    "mocha": "^10.2.0",
+    "rimraf": "^4.4.0",
+    "ts-node": "^10.9.1"
+  }
+}
