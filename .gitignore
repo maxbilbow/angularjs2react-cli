@@ -2,3 +2,5 @@
 /out
 /dist
 /build
+**/.DS_Store
+/.idea

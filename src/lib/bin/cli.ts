@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs'
-import {findComponents, resolveTemplates, createReactComponent} from '@maxbilbow/angularjs2react'
+import {findComponents, resolveTemplates} from '@ng2react/core'
 import path from 'path'
 import fs from 'fs'
-import getOutputFilePath from '../get-output-path.js';
+import getOutputFilePath from '../get-output-path.js'
 
 yargs(process.argv)
     .scriptName('angularjs2react')

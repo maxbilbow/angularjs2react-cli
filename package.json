@@ -1,13 +1,17 @@
 {
-  "name": "@maxbilbow/angularjs2react-cli",
-  "version": "1.0.0-alpha",
+  "name": "@ng2react/cli",
+  "version": "0.0.0-alpha",
   "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.cjs",
   "bin": "dist/lib/bin/cli.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc --build ./src/lib/tsconfig.json"
+    "build": "tsc --build ./src/lib/tsconfig.json",
+    "preversion": "npm run lint && npm run test && npm run build",
+    "prepublishOnly": "npm run build",
+    "test": "mocha",
+    "lint": "eslint ./src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -20,10 +24,10 @@
   },
   "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
   "dependencies": {
-    "@maxbilbow/angularjs2react": "^1.0.0-alpha",
+    "@ng2react/core": "^0.0.0-alpha.0",
     "tslog": "^4.8.2",
     "yargs": "^17.7.1",
-    "typescript": "^5.0.1-rc"
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
