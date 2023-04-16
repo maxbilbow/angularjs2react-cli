@@ -1,10 +1,12 @@
 {
   "name": "@ng2react/cli",
-  "version": "0.0.0-alpha",
+  "version": "0.0.0-alpha.4",
   "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
   "type": "commonjs",
   "main": "index.cjs",
-  "bin": "dist/lib/bin/cli.js",
+  "bin": {
+    "ng2react": "./dist/bin/cli.js"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc --build ./src/lib/tsconfig.json",

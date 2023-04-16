@@ -1,35 +1,43 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs'
-import {findComponents, resolveTemplates} from '@ng2react/core'
-import path from 'path'
-import fs from 'fs'
-import getOutputFilePath from '../get-output-path.js'
+import {ConvertComponentArgs, FindComponentArgs} from '../cliArgs'
+import findComponentsCmd from '../commands/findComponentsCmd'
+import convertComponentsCmd from '../commands/convertComponentsCmd'
 
 yargs(process.argv)
-    .scriptName('angularjs2react')
-    .command<{ filename: string, cwd: string }>('convert <filename>',
+    .scriptName('ng2react')
+    .command<FindComponentArgs>('findComponents <filename>',
+        'Finds angular components in a file',
+        (yargs) => yargs
+            .positional('filename', {
+                describe: 'The file to search',
+                type: 'string'
+            }),
+        findComponentsCmd
+    )
+    .command<ConvertComponentArgs>('convert <filename> <componentName>',
         'Converts angular components to react',
         (yargs) => yargs
             .positional('filename', {
+                describe: 'The file containing the component',
+                type: 'string'
+            })
+            .positional('componentName', {
                 describe: 'The file to convert',
                 type: 'string'
             }),
-        (argv) => {
-            console.log('Converting angular components to react')
-            argv.filename = path.resolve(argv.cwd, argv.filename)
-            let components = findComponents(argv.filename)
-            components = resolveTemplates(components)
-            for (const component of components) {
-                const fileName = getOutputFilePath(component)
-                const reactSource = createReactComponent(component)
-                fs.writeFileSync(fileName, reactSource.getText())
-            }
-        })
+        convertComponentsCmd)
     .options('cwd', {
         describe: 'The current working directory',
         type: 'string',
         default: process.cwd()
+    })
+    .option('quiet', {
+        describe: 'Suppresses all logging',
+        type: 'boolean',
+        default: false,
+        alias: 'q'
     })
     .strict()
     .help()
