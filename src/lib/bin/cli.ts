@@ -1,12 +1,25 @@
 #!/usr/bin/env node
 
-import yargs from 'yargs'
-import {ConvertComponentArgs, FindComponentArgs} from '../cliArgs'
+import yargs, {argv} from 'yargs'
+import {CliArgs, ConvertComponentArgs, FindComponentArgs} from '../cliArgs'
 import findComponentsCmd from '../commands/findComponentsCmd'
 import convertComponentsCmd from '../commands/convertComponentsCmd'
+import {onError} from '../io/writeOutput'
+import middleware from '../middleware'
 
-yargs(process.argv)
+process.on('unhandledRejection', (reason) => {
+    onError(reason)
+    process.exit(1)
+})
+
+process.on('uncaughtException', (error) => {
+    onError(error)
+    process.exit(1)
+})
+
+yargs
     .scriptName('ng2react')
+    .middleware(middleware(), true)
     .command<FindComponentArgs>('findComponents <filename>',
         'Finds angular components in a file',
         (yargs) => yargs
@@ -35,9 +48,17 @@ yargs(process.argv)
     })
     .option('quiet', {
         describe: 'Suppresses all logging',
+        type: 'boolean'
+    })
+    .option('json', {
+        describe: 'Outputs the result as json. ' +
+            'When provided, all responses will be in the format {data: any, error?: string}',
+        type: 'boolean'
+    })
+    .option('verbose', {
+        describe: 'Outputs more information',
         type: 'boolean',
-        default: false,
-        alias: 'q'
+        conflicts: 'quiet'
     })
     .strict()
     .help()

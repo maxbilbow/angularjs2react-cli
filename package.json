@@ -1,6 +1,6 @@
 {
   "name": "@ng2react/cli",
-  "version": "0.0.0-alpha.4",
+  "version": "0.0.0-alpha.11",
   "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
   "type": "commonjs",
   "main": "index.cjs",
@@ -13,7 +13,9 @@
     "preversion": "npm run lint && npm run test && npm run build",
     "prepublishOnly": "npm run build",
     "test": "mocha",
-    "lint": "eslint ./src/**/*.ts"
+    "lint": "eslint ./src/**/*.ts",
+
+    "try": "node ./dist/bin/cli.js findComponents \"./src/test/test_data/todo-list.component.js\""
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,7 @@
   },
   "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
   "dependencies": {
-    "@ng2react/core": "^0.0.0-alpha.0",
+    "@ng2react/core": "^0.0.0-alpha.5",
     "tslog": "^4.8.2",
     "yargs": "^17.7.1",
     "typescript": "^5.0.2"

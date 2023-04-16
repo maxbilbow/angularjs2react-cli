@@ -1,6 +1,7 @@
 import {createAst, findComponents} from '@ng2react/core'
 import {CliArgs} from '../cliArgs'
 import path from 'path'
+import {onComplete} from '../io/writeOutput'
 
 export default function findComponentsCmd({filename, cwd}: CliArgs): void {
     const ast = createAst(path.resolve(cwd, filename))
@@ -8,5 +9,6 @@ export default function findComponentsCmd({filename, cwd}: CliArgs): void {
     if (!components) {
         throw Error(`Could not find components in ${filename}`)
     }
-    process.stdout.write(JSON.stringify(components.map(c => c.name)))
+    const componentNames = components.map(c => ({name: c.name}))
+    onComplete({result: componentNames})
 }

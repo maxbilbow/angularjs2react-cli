@@ -1,7 +1,9 @@
 export interface CliArgs {
-    quiet: boolean
+    quiet?: true
     cwd: string
     filename: string
+    verbose?: true
+    json?: true
 }
 
 export type FindComponentArgs = CliArgs

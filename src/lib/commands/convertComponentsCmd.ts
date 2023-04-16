@@ -1,6 +1,7 @@
 import {createAst, findComponents, resolveTemplates} from '@ng2react/core'
 import {ConvertComponentArgs} from '../cliArgs'
 import path from 'path'
+import {onComplete} from '../io/writeOutput'
 
 export default function convertComponentsCmd({filename, componentName, cwd}: ConvertComponentArgs): void {
     const ast = createAst(path.resolve(cwd, filename))
@@ -11,5 +12,5 @@ export default function convertComponentsCmd({filename, componentName, cwd}: Con
         throw Error(`Could not find component ${componentName} in ${filename}`)
     }
 
-    process.stdout.write(component.node.getText())
+    onComplete({result: component.node.getText()})
 }
