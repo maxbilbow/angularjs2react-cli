@@ -1,6 +1,6 @@
 {
   "name": "@ng2react/cli",
-  "version": "0.0.0-alpha.11",
+  "version": "0.0.0-alpha.12",
   "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
   "type": "commonjs",
   "main": "index.cjs",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
   "dependencies": {
-    "@ng2react/core": "^0.0.0-alpha.5",
+    "@ng2react/core": "^0.0.0-alpha.10",
     "tslog": "^4.8.2",
     "yargs": "^17.7.1",
     "typescript": "^5.0.2"

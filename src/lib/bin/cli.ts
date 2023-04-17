@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import yargs, {argv} from 'yargs'
-import {CliArgs, ConvertComponentArgs, FindComponentArgs} from '../cliArgs'
-import findComponentsCmd from '../commands/findComponentsCmd'
+import yargs from 'yargs'
+import { ConvertComponentArgs, FindComponentArgs } from '../cliArgs'
 import convertComponentsCmd from '../commands/convertComponentsCmd'
-import {onError} from '../io/writeOutput'
+import findComponentsCmd from '../commands/findComponentsCmd'
+import { onError } from '../io/writeOutput'
 import middleware from '../middleware'
 
 process.on('unhandledRejection', (reason) => {
