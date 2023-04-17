@@ -1,9 +1,13 @@
+import {SearchResult} from '../model/SearchResult'
+import {ConvertResult} from '../model/ConvertResult'
+
 let json = false
 
 export function setJson() {
     json = true
 }
-export function onComplete(output: {result: string| { name: string }[]}): void {
+
+export function onComplete(output: SearchResult | ConvertResult): void {
     if (json) {
         const json = JSON.stringify(output)
         process.stdout.write(json)
@@ -17,7 +21,7 @@ export function onComplete(output: {result: string| { name: string }[]}): void {
 export function onError(error: unknown): void {
     if (!process.argv.includes('--quiet')) {
         console.error(error)
-    } else if (error instanceof Error){
+    } else if (error instanceof Error) {
         process.stderr.write(error.message)
     } else if (error !== undefined && error !== null) {
         process.stderr.write(error.toString())

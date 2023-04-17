@@ -3,7 +3,7 @@
 import yargs from 'yargs'
 import { ConvertComponentArgs, FindComponentArgs } from '../cliArgs'
 import convertComponentsCmd from '../commands/convertComponentsCmd'
-import findComponentsCmd from '../commands/findComponentsCmd'
+import searchCmd from '../commands/searchCmd'
 import { onError } from '../io/writeOutput'
 import middleware from '../middleware'
 
@@ -20,14 +20,14 @@ process.on('uncaughtException', (error) => {
 yargs
     .scriptName('ng2react')
     .middleware(middleware(), true)
-    .command<FindComponentArgs>('findComponents <filename>',
+    .command<FindComponentArgs>('search <filename>',
         'Finds angular components in a file',
         (yargs) => yargs
             .positional('filename', {
                 describe: 'The file to search',
                 type: 'string'
             }),
-        findComponentsCmd
+        searchCmd
     )
     .command<ConvertComponentArgs>('convert <filename> <componentName>',
         'Converts angular components to react',
