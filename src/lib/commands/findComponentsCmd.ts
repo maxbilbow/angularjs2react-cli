@@ -1,7 +1,7 @@
 import {createAst, findComponents} from '@ng2react/core'
-import {CliArgs} from '../cliArgs'
-import path from 'path'
-import {onComplete} from '../io/writeOutput'
+import {CliArgs} from '../cliArgs.ts'
+import * as path from 'https://deno.land/std@0.183.0/path/mod.ts'
+import {onComplete} from '../io/writeOutput.ts'
 
 export default function findComponentsCmd({filename, cwd}: CliArgs): void {
     const ast = createAst(path.resolve(cwd, filename))

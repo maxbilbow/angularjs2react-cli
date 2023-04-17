@@ -1,0 +1,9 @@
+{
+    "imports": {
+        "npm:@ng2react/core": "npm:@ng2react/core@0.0.0-alpha.9",
+        "typescript": "npm:typescript",
+        "fs": "npm:fs",
+        "path": "npm:path",
+        "tslog": "npm:tslog"
+    }
+}

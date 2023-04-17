@@ -6,22 +6,32 @@ export function setJson() {
 export function onComplete(output: {result: string| { name: string }[]}): void {
     if (json) {
         const json = JSON.stringify(output)
-        process.stdout.write(json)
+        write(json)
     } else if (output.result instanceof Array) {
-        process.stdout.write(output.result.map(c => c.name).join(', '))
+        write(output.result.map(c => c.name).join(', '))
     } else {
-        process.stdout.write(output.result)
+        write(output.result)
     }
 }
 
 export function onError(error: unknown): void {
-    if (!process.argv.includes('--quiet')) {
+    if (!Deno.args.includes('--quiet')) {
         console.error(error)
     } else if (error instanceof Error){
-        process.stderr.write(error.message)
+        writeError(error.message)
     } else if (error !== undefined && error !== null) {
-        process.stderr.write(error.toString())
+        writeError(error.toString())
     } else {
-        process.stderr.write('Unknown error')
+        writeError('Unknown error')
     }
+}
+
+function write(output: string): void {
+    const bytes = new TextEncoder().encode(output)
+    Deno.stdout.writeSync(bytes)
+}
+
+function writeError(output: string): void {
+    const bytes = new TextEncoder().encode(output)
+    Deno.stderr.writeSync(bytes)
 }

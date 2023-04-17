@@ -1,7 +1,7 @@
-import type {AngularComponent} from '@ng2react/core'
-import type {Node} from 'typescript'
-import path from 'path'
-import fs from 'fs'
+import type {AngularComponent} from 'npm:@ng2react/core'
+import type {Node} from 'npm:typescript'
+import * as path from 'https://deno.land/std@0.183.0/path/mod.ts'
+import * as fs from 'https://deno.land/std@0.183.0/fs/mod.ts'
 
 export default function getOutputFilePath(component: AngularComponent) {
     const fileDir = getSourceDir(component.node)

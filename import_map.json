@@ -1,0 +1,28 @@
+{
+  "imports": {
+   
+  },
+  "scopes": {
+    "./": {
+      "@ng2react/core": "https://ga.jspm.io/npm:@ng2react/core@0.0.0-alpha.10/dist/esm/index.js"
+    },
+    "https://ga.jspm.io/": {
+      "url": "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/deno/url.ts",
+      "#dist/esm/runtime/nodejs/index.js": "https://ga.jspm.io/npm:tslog@4.8.2/dist/esm/runtime/nodejs/index.js",
+      "buffer": "node:buffer",
+      "buffer-from": "https://ga.jspm.io/npm:buffer-from@1.1.2/index.js",
+      "crypto": "https://deno.land/std@0.183.0/crypto/mod.ts",
+      "fs": "https://deno.land/std@0.183.0/fs/mod.ts",
+      "inspector": "npm:inspector",
+      "os": "node:os",
+      "path": "node:path",
+      "perf_hooks": "https://deno.land/std@0.110.0/node/perf_hooks.ts",
+      "process": "node:process",
+      "source-map": "https://ga.jspm.io/npm:source-map@0.6.1/source-map.js",
+      "source-map-support": "https://ga.jspm.io/npm:source-map-support@0.5.21/source-map-support.js",
+      "tslog": "https://ga.jspm.io/npm:tslog@4.8.2/dist/esm/index.js",
+      "typescript": "https://ga.jspm.io/npm:typescript@5.0.4/lib/typescript.js",
+      "util": "node:util"
+    }
+  }
+}

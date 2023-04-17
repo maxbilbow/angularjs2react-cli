@@ -1,23 +1,14 @@
 #!/usr/bin/env node
 
-import yargs, {argv} from 'yargs'
-import {CliArgs, ConvertComponentArgs, FindComponentArgs} from '../cliArgs'
-import findComponentsCmd from '../commands/findComponentsCmd'
-import convertComponentsCmd from '../commands/convertComponentsCmd'
-import {onError} from '../io/writeOutput'
-import middleware from '../middleware'
+import yargs from 'https://cdn.deno.land/yargs/versions/yargs-v16.2.1-deno/raw/deno.ts'
+import {CliArgs, ConvertComponentArgs, FindComponentArgs} from '../cliArgs.ts'
+import findComponentsCmd from '../commands/findComponentsCmd.ts'
+import convertComponentsCmd from '../commands/convertComponentsCmd.ts'
+import {onError} from '../io/writeOutput.ts'
+import middleware from '../middleware.ts'
+import { parse } from 'https://deno.land/std@0.183.0/flags/mod.ts'
 
-process.on('unhandledRejection', (reason) => {
-    onError(reason)
-    process.exit(1)
-})
-
-process.on('uncaughtException', (error) => {
-    onError(error)
-    process.exit(1)
-})
-
-yargs
+    return yargs
     .scriptName('ng2react')
     .middleware(middleware(), true)
     .command<FindComponentArgs>('findComponents <filename>',
