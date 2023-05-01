@@ -39,9 +39,25 @@ yargs
             .positional('componentName', {
                 describe: 'The file to convert',
                 type: 'string'
-            }),
+            })
+            .option('openaiApiKey', {
+                describe: 'The openai api key',
+                type: 'string',
+                default: process.env.OPENAI_API_KEY
+            })
+            .option('openaiModel', {
+                describe: 'The openai model to use',
+                type: 'string',
+                default: process.env.OPENAI_MODEL
+            })
+            .option('openaiOrg', {
+                describe: 'The openai model to use',
+                type: 'string',
+                default: process.env.OPENAI_ORGANIZATION
+            })
+            .option,
         convertComponentsCmd)
-    .options('cwd', {
+    .option('cwd', {
         describe: 'The current working directory',
         type: 'string',
         default: process.cwd()

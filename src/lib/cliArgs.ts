@@ -9,5 +9,8 @@ export interface CliArgs {
 export type FindComponentArgs = CliArgs
 
 export interface ConvertComponentArgs extends CliArgs {
-    componentName: string
+    componentName: string,
+    openaiApiKey: string,
+    openaiModel?: string,
+    openaiOrg?: string
 }

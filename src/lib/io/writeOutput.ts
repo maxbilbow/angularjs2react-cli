@@ -9,13 +9,18 @@ export function setJson() {
 
 export function onComplete(output: SearchResult | ConvertResult): void {
     if (json) {
+        // For json output, we want to write the full object to stdout
         const json = JSON.stringify(output)
         process.stdout.write(json)
-    } else if (output.result instanceof Array) {
+    } else if (isSearchResult(output)) {
         process.stdout.write(output.result.map(c => c.name).join(', '))
     } else {
-        process.stdout.write(output.result)
+        process.stdout.write(output.result[0].jsx)
     }
+}
+
+function isSearchResult(output: SearchResult | ConvertResult): output is SearchResult {
+    return 'name' in output.result[0] && 'file' in output.result[0] && 'location' in output.result[0]
 }
 
 export function onError(error: unknown): void {
