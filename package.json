@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
   "dependencies": {
-    "@ng2react/core": "^0.0.0-alpha.17",
+    "@ng2react/core": "^0.0.3",
     "tslog": "^4.8.2",
     "typescript": "^5.0.4",
     "yargs": "^17.7.1"

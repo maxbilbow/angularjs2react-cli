@@ -2,7 +2,7 @@
 
 import yargs from 'yargs'
 import { ConvertComponentArgs, FindComponentArgs } from '../cliArgs'
-import convertComponentsCmd from '../commands/convertComponentsCmd'
+import convertCmd from '../commands/convertCmd'
 import searchCmd from '../commands/searchCmd'
 import { onError } from '../io/writeOutput'
 import middleware from '../middleware'
@@ -40,23 +40,26 @@ yargs
                 describe: 'The file to convert',
                 type: 'string'
             })
-            .option('openaiApiKey', {
+            .option('apiKey', {
                 describe: 'The openai api key',
                 type: 'string',
                 default: process.env.OPENAI_API_KEY
             })
-            .option('openaiModel', {
+            .option('model', {
                 describe: 'The openai model to use',
                 type: 'string',
                 default: process.env.OPENAI_MODEL
             })
-            .option('openaiOrg', {
+            .option('organization', {
                 describe: 'The openai model to use',
                 type: 'string',
                 default: process.env.OPENAI_ORGANIZATION
             })
-            .option,
-        convertComponentsCmd)
+            .option('sourceRoot', {
+                describe: 'The source root where all AngularJS JS and HTML are located',
+                type: 'string'
+            }),
+        convertCmd)
     .option('cwd', {
         describe: 'The current working directory',
         type: 'string',
