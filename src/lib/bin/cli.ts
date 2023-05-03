@@ -20,19 +20,19 @@ process.on('uncaughtException', (error) => {
 yargs
     .scriptName('ng2react')
     .middleware(middleware(), true)
-    .command<FindComponentArgs>('search <filename>',
+    .command<FindComponentArgs>('search <file>',
         'Finds angular components in a file',
         (yargs) => yargs
-            .positional('filename', {
+            .positional('file', {
                 describe: 'The file to search',
                 type: 'string'
             }),
         searchCmd
     )
-    .command<ConvertComponentArgs>('convert <filename> <componentName>',
+    .command<ConvertComponentArgs>('convert <file> <componentName>',
         'Converts angular components to react',
         (yargs) => yargs
-            .positional('filename', {
+            .positional('file', {
                 describe: 'The file containing the component',
                 type: 'string'
             })
@@ -48,7 +48,7 @@ yargs
             .option('model', {
                 describe: 'The openai model to use',
                 type: 'string',
-                default: process.env.OPENAI_MODEL
+                default: process.env.OPENAI_MODEL ?? 'gpt-4'
             })
             .option('organization', {
                 describe: 'The openai model to use',
@@ -58,6 +58,11 @@ yargs
             .option('sourceRoot', {
                 describe: 'The source root where all AngularJS JS and HTML are located',
                 type: 'string'
+            })
+            .option('temperature', {
+                describe: 'The temperature to use when generating text, between 0 and 2',
+                type: 'number',
+                default: 0.2,
             }),
         convertCmd)
     .option('cwd', {
