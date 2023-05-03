@@ -1,13 +1,13 @@
+import type {ConvertOptions} from '@ng2react/core'
+
 export interface CliArgs {
     quiet?: true
     cwd: string
-    filename: string
+    file: string
     verbose?: true
     json?: true
 }
 
 export type FindComponentArgs = CliArgs
 
-export interface ConvertComponentArgs extends CliArgs {
-    componentName: string
-}
+export type ConvertComponentArgs = CliArgs & ConvertOptions

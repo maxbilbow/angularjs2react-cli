@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
@@ -7,8 +8,7 @@ module.exports = {
     sourceType: 'module',
     tsconfigRootDir: __dirname,
   },
-  root: true,
-  ignorePatterns: ['node_modules', 'dist', 'coverage', '.eslintrc.cjs', 'templates'],
+  ignorePatterns: ['node_modules', 'dist', 'coverage', '.eslintrc.cjs', 'templates', 'test_data'],
   rules: {
     quotes: ['error', 'single'],
     'semi': ['error', 'never'],
