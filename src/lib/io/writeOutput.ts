@@ -1,5 +1,5 @@
-import {SearchResult} from '../model/SearchResult'
-import {ConvertResult} from '../model/ConvertResult'
+import { SearchResult } from '../model/SearchResult'
+import { ConvertResult } from '../model/ConvertResult'
 
 let json = false
 
@@ -13,7 +13,7 @@ export function onComplete(output: SearchResult | ConvertResult): void {
         const json = JSON.stringify(output)
         process.stdout.write(json)
     } else if (isSearchResult(output)) {
-        process.stdout.write(output.result.map(c => c.name).join(', '))
+        process.stdout.write(output.result.map((c) => c.name).join(', '))
     } else {
         process.stdout.write(output.result[0].jsx)
     }

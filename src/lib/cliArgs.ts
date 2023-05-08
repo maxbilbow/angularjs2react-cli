@@ -1,4 +1,4 @@
-import type {ConvertOptions} from '@ng2react/core'
+import type { ConvertOptions } from '@ng2react/core'
 
 export interface CliArgs {
     quiet?: true

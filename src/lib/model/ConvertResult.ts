@@ -1,6 +1,6 @@
 export type ConvertResult = {
     result: readonly {
-        jsx: string,
+        jsx: string
         markdown: string
     }[]
 }

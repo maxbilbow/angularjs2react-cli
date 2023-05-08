@@ -1,11 +1,11 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "composite": false
-  }
+    "compilerOptions": {
+        "target": "ES2022",
+        "outDir": "dist",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "composite": false
+    }
 }

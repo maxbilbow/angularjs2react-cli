@@ -1,5 +1,5 @@
-import {Logger} from 'tslog'
-import {setLogLevel as setCoreLogLevel} from '@ng2react/core'
+import { Logger } from 'tslog'
+import { setLogLevel as setCoreLogLevel } from '@ng2react/core'
 
 let logLevel = 4
 
@@ -19,5 +19,5 @@ export function setLogLevel(level: 'quiet' | 'verbose' | 'normal') {
 }
 
 export default function getLogger(name: string) {
-    return new Logger<void>({name, minLevel: logLevel})
+    return new Logger<void>({ name, minLevel: logLevel })
 }

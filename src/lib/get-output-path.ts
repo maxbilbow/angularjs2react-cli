@@ -1,7 +1,7 @@
-import type {Node} from 'typescript'
+import type { Node } from 'typescript'
 import path from 'path'
 import fs from 'fs'
-import type {search} from '@ng2react/core'
+import type { search } from '@ng2react/core'
 
 type AngularComponent = ReturnType<typeof search>[number]
 export default function getOutputFilePath(component: AngularComponent) {
