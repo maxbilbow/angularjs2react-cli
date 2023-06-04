@@ -1,7 +1,7 @@
-import {SearchResult} from '../model/SearchResult'
-import {ConvertResult} from '../model/ConvertResult'
+import {Ng2RSearchResult} from '../generated/SearchResult'
+import {Ng2RGenerationResponse} from '../generated/GenerationResponse'
 
-export function onComplete(output: SearchResult | ConvertResult): void {
+export function onComplete(output: Ng2RSearchResult | Ng2RGenerationResponse): void {
     // For json output, we want to write the full object to stdout
     const json = JSON.stringify(output)
     process.stdout.write(json)

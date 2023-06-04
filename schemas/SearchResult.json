@@ -1,0 +1,56 @@
+{
+  "$id": "https://raw.githubusercontent.com/main/schemas/SearchResponse.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ng2rSearchResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result"],
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ComponentInfo"
+      }
+    }
+  },
+  "$defs": {
+    "ComponentInfo": {
+      "type": "object",
+      "title": "Ng2rComponent",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "file",
+        "location"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the AngularJS component"
+        },
+        "file": {
+          "type": "string",
+          "description": "The name of the file"
+        },
+        "location": {
+          "type": "object",
+          "title": "Location",
+          "required": [
+            "start",
+            "end"
+          ],
+          "description": "the location of the component within the file",
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "integer"
+            },
+            "end": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

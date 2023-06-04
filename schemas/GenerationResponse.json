@@ -1,0 +1,44 @@
+{
+  "$id": "https://raw.githubusercontent.com/main/schemas/GenerationResponse.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ng2rGenerationResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "description": "The prompted used to generate this response"
+    },
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/GeneratedCode"
+      }
+    }
+  },
+  "required": [
+    "prompt",
+    "result"
+  ],
+  "$defs": {
+    "GeneratedCode": {
+      "type": "object",
+      "title": "Ng2rGeneratedCode",
+      "additionalProperties": false,
+      "properties": {
+        "jsx": {
+          "type": "string",
+          "description": "The generated JSX or TSX"
+        },
+        "markdown": {
+          "type": "string",
+          "description": "The full response in Markdown format"
+        }
+      },
+      "required": [
+        "jsx",
+        "markdown"
+      ]
+    }
+  }
+}
