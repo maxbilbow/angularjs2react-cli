@@ -1,13 +1,15 @@
 import type { ConvertOptions } from '@ng2react/core'
+import {ReactTestOptions} from '@ng2react/core/src/lib/modules/openai-conversion/react-test-gen'
 
 export interface CliArgs {
-    quiet?: true
     cwd: string
     file: string
     verbose?: true
-    json?: true
+    quiet?: true
 }
 
 export type FindComponentArgs = CliArgs
 
 export type ConvertComponentArgs = CliArgs & ConvertOptions
+
+export type GenerateTestArgs = CliArgs & ReactTestOptions

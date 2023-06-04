@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.generic.json",
+    "compilerOptions": {
+        "module": "CommonJS"
+    },
+    "exclude": [
+        "test_data"
+    ]
+}
