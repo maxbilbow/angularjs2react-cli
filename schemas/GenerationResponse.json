@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/main/schemas/GenerationResponse.json",
+  "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/GenerationResponse.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Ng2rGenerationResponse",
   "type": "object",

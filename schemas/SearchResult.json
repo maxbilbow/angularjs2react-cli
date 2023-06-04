@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/main/schemas/SearchResponse.json",
+  "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/SearchResult.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Ng2rSearchResult",
   "type": "object",
