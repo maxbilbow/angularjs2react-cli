@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.github.maxbilbow</groupId>
+    <groupId>io.github.ng2react</groupId>
     <artifactId>ng2react-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
@@ -44,9 +44,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
-                <configuration>
-                    <mainClass>io.github.maxbilbow.Ng2rApi</mainClass>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
@@ -54,7 +51,7 @@
                 <version>${jsonschema2pojo.version}</version>
                 <configuration>
                     <sourceDirectory>${project.basedir}/../../schemas</sourceDirectory>
-                    <targetPackage>io.github.maxbilbow.ng2react</targetPackage>
+                    <targetPackage>io.github.ng2react</targetPackage>
                     <includeConstructors>true</includeConstructors>
                     <includeToString>true</includeToString>
                     <useLongIntegers>false</useLongIntegers>
@@ -73,6 +70,57 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                <version>1.5</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>sign-artifacts</id>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>sign</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
 
         <resources>
@@ -90,4 +138,33 @@
         </resources>
     </build>
 
+
+    <!-- Required tags for Maven Central -->
+    <url>http://ng2react.github.io</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git://github.com/ng2react/cli.git</connection>
+        <developerConnection>scm:git:ssh://github.com/ng2react/cli.git</developerConnection>
+        <url>https://github.com/ng2react/cli/tree/main/libraries/ng2react-api-java</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>maxbilbow</id>
+            <name>Max Bilbow</name>
+            <email>ng2react@maxbilbow.com</email>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

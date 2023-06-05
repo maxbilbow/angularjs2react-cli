@@ -1,4 +1,4 @@
-package io.github.maxbilbow.ng2react;
+package io.github.ng2react;
 
 
 import org.junit.jupiter.api.Assertions;

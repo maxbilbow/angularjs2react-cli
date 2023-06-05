@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxbilbow/angularjs2react-cli.git"
+    "url": "git+https://github.com/ng2react/cli.git"
   },
   "author": "Max Bilbow",
   "license": "ISC",
