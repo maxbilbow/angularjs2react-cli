@@ -4,28 +4,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static java.lang.System.out;
 
 class Cli {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(Cli.class);
-    private final Path cli;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Cli.class);
+    private final String cliPath;
 
-    Cli() {
-        final URL cli = Objects.requireNonNull(AngularJSToReact.class.getResource("/ng2r.js"));
-        this.cli = Path.of(cli.getPath());
-    }
-
-    Cli(Path cli) {
-        this.cli = cli;
+    Cli() throws IOException {
+        cliPath = createTemporaryCli().toString();
     }
 
     <T> T call(final List<String> args, final Class<T> tClass) throws IOException {
@@ -34,12 +32,13 @@ class Cli {
 
     <T> T call(final String[] args, final Class<T> tClass) throws IOException {
         final String[] cmd = new String[args.length + 1];
-        cmd[0] = cli.toString();
+
+        cmd[0] = cliPath;
         System.arraycopy(args, 0, cmd, 1, args.length);
 
         LOGGER.debug(String.join(", ", cmd));
 
-        ProcessBuilder pb = new ProcessBuilder(cmd)
+        final ProcessBuilder pb = new ProcessBuilder(cmd)
                 .redirectError(ProcessBuilder.Redirect.INHERIT);
 
         final Process process = pb.start();
@@ -53,6 +52,20 @@ class Cli {
 
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(output, tClass);
+        }
+    }
+
+    private static Path createTemporaryCli() throws IOException {
+        final Path tempCli = Files.createTempFile("ng2r", ".js");
+        try (final InputStream in = AngularJSToReact.class.getResourceAsStream("/ng2r.js");
+             final OutputStream out = Files.newOutputStream(tempCli)) {
+            out.write(Objects.requireNonNull(in).readAllBytes());
+            if (!tempCli.toFile().setExecutable(true)) {
+                Files.deleteIfExists(tempCli);
+                throw new RuntimeException("Failed to set executable: " + tempCli);
+            }
+            tempCli.toFile().deleteOnExit();
+            return tempCli;
         }
     }
 }

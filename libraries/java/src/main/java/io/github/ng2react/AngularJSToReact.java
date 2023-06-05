@@ -14,11 +14,8 @@ public class AngularJSToReact {
     private static final Logger LOGGER = LoggerFactory.getLogger(AngularJSToReact.class);
     private final Cli cli;
 
-    public AngularJSToReact() {
+    public AngularJSToReact() throws IOException {
         this.cli = new Cli();
-    }
-    public AngularJSToReact(final Path cliPath) {
-        this.cli = new Cli(cliPath);
     }
 
     public String help() throws IOException {
