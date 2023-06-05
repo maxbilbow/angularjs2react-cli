@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import yargs from 'yargs'
-import {ConvertComponentArgs, FindComponentArgs, GenerateTestArgs} from '../cliArgs'
-import convertCmd from '../commands/convertCmd'
-import searchCmd from '../commands/searchCmd'
-import { onError } from '../io/writeOutput'
-import middleware from '../middleware'
-import generateReactTestCmd from '../commands/generateReactTestCmd'
+import {ConvertComponentArgs, FindComponentArgs, GenerateTestArgs, OptionName} from './cliArgs'
+import convertCmd from './commands/convertCmd'
+import searchCmd from './commands/searchCmd'
+import {onError} from './io/writeOutput'
+import middleware from './middleware'
+import generateReactTestCmd from './commands/generateReactTestCmd'
+import {Ng2RCommand} from './generated/Commands'
+import type yargs from 'yargs'
 
 process.on('unhandledRejection', (reason) => {
     onError(reason)
@@ -16,13 +17,14 @@ process.on('unhandledRejection', (reason) => {
 process.on('uncaughtException', (error) => {
     onError(error)
     process.exit(1)
-})
+});
 
-yargs
-    .scriptName('ng2react')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+(require('yargs') as typeof yargs)
+    .scriptName('ng2r')
     .middleware(middleware(), true)
     .command<FindComponentArgs>(
-        'search <file>',
+        'search <file>' satisfies `${Ng2RCommand} <file>`,
         'Finds angular components in a file',
         (yargs) =>
             yargs.positional('file', {
@@ -32,11 +34,11 @@ yargs
         searchCmd
     )
     .command<ConvertComponentArgs>(
-        'convert <file> <componentName>',
+        'convert <file> <componentName>' satisfies `${Ng2RCommand} <file> <componentName>`,
         'Converts angular components to react',
         (yargs) =>
             yargs
-                .positional('file', {
+                .positional('file' satisfies OptionName, {
                     describe: 'The file containing the component',
                     type: 'string',
                 })
@@ -44,35 +46,35 @@ yargs
                     describe: 'The file to convert',
                     type: 'string',
                 })
-                .option('apiKey', {
+                .option('apiKey' satisfies OptionName, {
                     describe: 'The openai api key',
                     type: 'string',
                     default: process.env.OPENAI_API_KEY,
                 })
-                .option('model', {
+                .option('model' satisfies OptionName, {
                     describe: 'The openai model to use',
                     type: 'string',
                     default: process.env.OPENAI_MODEL ?? 'gpt-4',
                 })
-                .option('organization', {
+                .option('organization' satisfies OptionName, {
                     describe: 'The openai model to use',
                     type: 'string',
                     default: process.env.OPENAI_ORGANIZATION,
                 })
-                .option('sourceRoot', {
+                .option('sourceRoot' satisfies OptionName, {
                     describe: 'The source root where all AngularJS JS and HTML are located',
                     type: 'string',
                 })
-                .option('temperature', {
+                .option('temperature' satisfies OptionName, {
                     describe: 'The temperature to use when generating text, between 0 and 2',
                     type: 'number',
                     default: 0.2,
                 })
-                .option('customPrompt', {
+                .option('customPrompt' satisfies OptionName, {
                     describe: 'Custom rules (Markdown) that will be used instead of the default rules regarding pattern conversion.',
                     type: 'string'
                 })
-                .option('targetLanguage', {
+                .option('targetLanguage' satisfies OptionName, {
                     describe: 'Target language for code generation. If none provided, the source language will be used.',
                     type: 'string',
                     choices: ['javascript', 'typescript']
@@ -80,7 +82,7 @@ yargs
         convertCmd
     )
     .command<GenerateTestArgs>(
-        'generateReactTest <file>',
+        'generateReactTest <file>' satisfies `${Ng2RCommand} <file>`,
         'Converts angular components to react',
         (yargs) =>
             yargs
@@ -88,34 +90,34 @@ yargs
                     describe: 'The file containing the component',
                     type: 'string',
                 })
-                .option('apiKey', {
+                .option('apiKey' satisfies OptionName, {
                     describe: 'The openai api key',
                     type: 'string',
                     default: process.env.OPENAI_API_KEY,
                 })
-                .option('model', {
+                .option('model' satisfies OptionName, {
                     describe: 'The openai model to use',
                     type: 'string',
                     default: process.env.OPENAI_MODEL ?? 'gpt-4',
                 })
-                .option('organization', {
+                .option('organization' satisfies OptionName, {
                     describe: 'The openai model to use',
                     type: 'string',
                     default: process.env.OPENAI_ORGANIZATION,
                 })
-                .option('temperature', {
+                .option('temperature' satisfies OptionName, {
                     describe: 'The temperature to use when generating text, between 0 and 2',
                     type: 'number',
                     default: 0.2,
                 })
-                .option('targetLanguage', {
+                .option('targetLanguage' satisfies OptionName, {
                     describe: 'Target language for code generation. If none provided, the source language will be used.',
                     type: 'string',
                     choices: ['javascript', 'typescript']
                 }),
         generateReactTestCmd
     )
-    .option('cwd', {
+    .option('cwd' satisfies OptionName, {
         describe: 'The current working directory',
         type: 'string',
         default: process.cwd(),
