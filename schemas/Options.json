@@ -1,0 +1,17 @@
+{
+  "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/Options.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ng2rOption",
+  "type": "string",
+  "enum": [
+    "--cwd",
+    "--file",
+    "--sourceRoot",
+    "--apiKey",
+    "--model",
+    "--organization",
+    "--temperature",
+    "--customPrompt",
+    "--targetLanguage"
+  ]
+}

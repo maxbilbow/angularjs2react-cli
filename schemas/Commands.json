@@ -1,0 +1,7 @@
+{
+  "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/Commands.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ng2rCommand",
+  "type": "string",
+  "enum": ["search", "convert", "generateReactTest"]
+}

@@ -3,9 +3,8 @@
         "target": "ES2022",
         "outDir": "dist",
         "moduleResolution": "node",
+        "module": "commonjs",
         "esModuleInterop": true,
-        "strict": true,
-        "allowSyntheticDefaultImports": true,
-        "composite": false
+        "strict": true
     }
 }

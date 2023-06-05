@@ -1,0 +1,86 @@
+{
+  "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/CliArgs.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ng2rConvertOptions",
+  "extends": {
+    "$ref": "#/$defs/test"
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "componentName",
+    "sourceRoot"
+  ],
+  "properties": {
+    "componentName": {
+      "type": "string"
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "The root directory of the project. If not specified, the directory below that of the\nnearest package.json file will be used."
+    },
+    "customPrompt": {
+      "type": "string",
+      "description": "Custom rules (Markdown) that will be used instead of the default rules regarding pattern conversion."
+    }
+  },
+  "$defs": {
+    "common": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Ng2rCommonOptions",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "cwd"
+      ],
+      "properties": {
+        "cwd": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        }
+      }
+    },
+    "test": {
+      "title": "Ng2rTestGenerationOptions",
+      "type": "object",
+      "extends": {
+        "$ref": "#/$defs/common"
+      },
+      "required": [
+        "apiKey"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string",
+          "enum": [
+            "gpt-4"
+          ],
+          "default": "gpt-4"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "The temperature to use when generating completions. Higher values result in more random completions.\nMust be between 0 and 2."
+        },
+        "targetLanguage": {
+          "type": "string",
+          "enum": [
+            "typescript",
+            "javascript"
+          ]
+        }
+      }
+    }
+  }
+}
