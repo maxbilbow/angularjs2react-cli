@@ -4,7 +4,6 @@
   "title": "Ng2rOption",
   "type": "string",
   "enum": [
-    "--cwd",
     "--file",
     "--sourceRoot",
     "--apiKey",

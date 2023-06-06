@@ -69,7 +69,7 @@
       ],
       "properties": {
         "file": {
-          "description": "File path relative to cwd",
+          "description": "Absolute path of file to search",
           "type": "string"
         }
       }
@@ -80,9 +80,7 @@
       "additionalProperties": false,
       "required": [
         "file",
-        "apiKey",
-        "model",
-        "temperature"
+        "apiKey"
       ],
       "properties": {
         "file": {

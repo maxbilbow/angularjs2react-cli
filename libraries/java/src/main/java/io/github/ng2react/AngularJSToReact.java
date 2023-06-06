@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class AngularJSToReact {
     private static final Logger LOGGER = LoggerFactory.getLogger(AngularJSToReact.class);
@@ -18,16 +20,35 @@ public class AngularJSToReact {
     public String help() throws IOException {
         return this.cli.call(Collections.singletonList("--help"), String.class);
     }
+
+    /**
+     * Checks the connection to the API
+     */
+    public boolean checkConnection(Ng2rCheckOptions options) throws IOException {
+        final String[] cmd = {
+                Ng2rCommand.CHECK_CONNECTION.value(),
+                Ng2rOption.API_KEY.value(),
+                Objects.requireNonNull(options.getApiKey()),
+                Ng2rOption.MODEL.value(),
+                Objects.requireNonNull(options.getModel().value())
+        };
+        try {
+            LOGGER.info("OpenAI Connection test: {}", this.cli.call(cmd, String.class));
+        } catch (IOException e) {
+            LOGGER.error("OpenAI Connection test failed: {}", e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Searches a file for convertable AngularJS Components
      */
-    public Ng2rSearchResult search(Ng2rCommonOptions options) throws IOException {
+    public Ng2rSearchResult search(Ng2rSearchOptions options) throws IOException {
         LOGGER.debug("Finding components in " + options.getFile() + "...");
         final String[] cmd = {
                 Ng2rCommand.SEARCH.value(),
-                Objects.requireNonNull(options.getFile()),
-                Ng2rOption.CWD.value(),
-                Objects.requireNonNull(options.getCwd()),
+                Objects.requireNonNull(options.getFile())
         };
         return cli.call(cmd, Ng2rSearchResult.class);
     }
@@ -65,10 +86,8 @@ public class AngularJSToReact {
         return cli.call(cmd, Ng2rGenerationResponse.class);
     }
 
-    private List<String> getTestOptions(Ng2rTestGenerationOptions options) {
+    private List<String> getTestOptions(Ng2rGptOptions options) {
         final List<String> cmd = new ArrayList<>(List.of(
-                Ng2rOption.CWD.value(),
-                Objects.requireNonNull(options.getCwd()),
                 Ng2rOption.API_KEY.value(),
                 Objects.requireNonNull(options.getApiKey())
         ));

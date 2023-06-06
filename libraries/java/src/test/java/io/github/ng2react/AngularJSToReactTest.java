@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 class AngularJSToReactTest {
-    private static final String CWD = Objects.requireNonNull(AngularJSToReact.class.getResource("/")).getPath();
-    private static final String TODO_COMPONENT = "/sourceRoot/todoComponent.js";
+    private static final String TODO_COMPONENT = Objects.requireNonNull(
+            AngularJSToReact.class.getResource("/sourceRoot/todoComponent.js")
+    ).getPath();
 
     @Test
     void testHelp() throws IOException {
@@ -24,8 +25,7 @@ class AngularJSToReactTest {
 
         @BeforeEach
         void doSearch() throws IOException {
-            Ng2rCommonOptions options = new Ng2rCommonOptions()
-                    .withCwd(CWD)
+            Ng2rSearchOptions options = new Ng2rSearchOptions()
                     .withFile(TODO_COMPONENT);
             result = new AngularJSToReact()
                     .search(options);
