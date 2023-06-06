@@ -8,6 +8,8 @@ import middleware from './middleware'
 import generateReactTestCmd from './commands/generateReactTestCmd'
 import {Ng2RCommand} from './generated/Commands'
 import type yargs from 'yargs'
+import checkConnectionCmd from './commands/checkConnectionCmd'
+import {Ng2RCheckOptions} from './generated/CliArgs'
 
 process.on('unhandledRejection', (reason) => {
     onError(reason)
@@ -116,6 +118,21 @@ process.on('uncaughtException', (error) => {
                     choices: ['javascript', 'typescript']
                 }),
         generateReactTestCmd
+    )
+    .command<Ng2RCheckOptions>('checkConnection' satisfies Ng2RCommand,
+        'Checks the connection to the openai api',
+        yargs => yargs
+            .option('apiKey' satisfies OptionName, {
+                describe: 'The openai api key',
+                type: 'string',
+                default: process.env.OPENAI_API_KEY,
+            })
+            .option('model' satisfies OptionName, {
+                describe: 'The openai model to use',
+                type: 'string',
+                default: process.env.OPENAI_MODEL ?? 'gpt-3-turbo',
+            }),
+        checkConnectionCmd
     )
     .option('cwd' satisfies OptionName, {
         describe: 'The current working directory',

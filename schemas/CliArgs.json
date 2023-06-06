@@ -1,45 +1,47 @@
 {
   "$id": "https://raw.githubusercontent.com/ng2react/cli/main/schemas/CliArgs.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Ng2rConvertOptions",
-  "extends": {
-    "$ref": "#/$defs/test"
-  },
+  "title": "ignorethistype",
+  "description": "@deprecated",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "componentName",
-    "sourceRoot"
-  ],
   "properties": {
-    "componentName": {
-      "type": "string"
+    "test": {
+      "$ref": "#/$defs/test"
     },
-    "sourceRoot": {
-      "type": "string",
-      "description": "The root directory of the project. If not specified, the directory below that of the\nnearest package.json file will be used."
+    "convert": {
+      "$ref": "#/$defs/convert"
     },
-    "customPrompt": {
-      "type": "string",
-      "description": "Custom rules (Markdown) that will be used instead of the default rules regarding pattern conversion."
+    "search": {
+      "$ref": "#/$defs/search"
+    },
+    "check": {
+      "$ref": "#/$defs/check"
     }
   },
   "$defs": {
-    "common": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "title": "Ng2rCommonOptions",
+    "convert": {
+      "title": "Ng2rConvertOptions",
+      "extends": {
+        "$ref": "#/$defs/gpt"
+      },
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "file",
-        "cwd"
+        "componentName",
+        "sourceRoot"
       ],
       "properties": {
-        "cwd": {
+        "componentName": {
           "type": "string"
         },
-        "file": {
-          "type": "string"
+        "sourceRoot": {
+          "type": "string",
+          "description": "The root directory of the project. If not specified, the directory below that of the\nnearest package.json file will be used."
+        },
+        "customPrompt": {
+          "type": "string",
+          "description": "Custom rules (Markdown) that will be used instead of the default rules regarding pattern conversion."
         }
       }
     },
@@ -47,21 +49,51 @@
       "title": "Ng2rTestGenerationOptions",
       "type": "object",
       "extends": {
-        "$ref": "#/$defs/common"
+        "$ref": "#/$defs/gpt"
       },
-      "required": [
-        "apiKey"
-      ],
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "string",
+      "enum": [
+        "gpt-4",
+        "gpt-3-turbo"
+      ]
+    },
+    "search": {
+      "title": "Ng2rSearchOptions",
+      "type": "object",
       "additionalProperties": false,
+      "required": [
+        "file"
+      ],
       "properties": {
+        "file": {
+          "description": "File path relative to cwd",
+          "type": "string"
+        }
+      }
+    },
+    "gpt": {
+      "title": "Ng2rGptOptions",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "apiKey",
+        "model",
+        "temperature"
+      ],
+      "properties": {
+        "file": {
+          "description": "Absolute path to the file to be converted",
+          "type": "string"
+        },
         "apiKey": {
           "type": "string"
         },
         "model": {
-          "type": "string",
-          "enum": [
-            "gpt-4"
-          ],
+          "$ref": "#/$defs/model",
           "default": "gpt-4"
         },
         "organization": {
@@ -71,6 +103,7 @@
           "type": "number",
           "minimum": 0,
           "maximum": 2,
+          "default": 0.2,
           "description": "The temperature to use when generating completions. Higher values result in more random completions.\nMust be between 0 and 2."
         },
         "targetLanguage": {
@@ -79,6 +112,24 @@
             "typescript",
             "javascript"
           ]
+        }
+      }
+    },
+    "check": {
+      "title": "Ng2rCheckOptions",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "apiKey",
+        "model"
+      ],
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "model": {
+          "$ref": "#/$defs/model",
+          "default": "gpt-3-turbo"
         }
       }
     }

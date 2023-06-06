@@ -3,5 +3,5 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Ng2rCommand",
   "type": "string",
-  "enum": ["search", "convert", "generateReactTest"]
+  "enum": ["search", "convert", "generateReactTest", "checkConnection"]
 }

@@ -1,13 +1,12 @@
-import { search } from '@ng2react/core'
-import { CliArgs } from '../cliArgs'
-import path from 'path'
-import { onComplete } from '../io/writeOutput'
+import {search} from '@ng2react/core'
+import {onComplete} from '../io/writeOutput'
 import fs from 'fs'
-import type {Ng2RComponent} from '../generated/SearchResult'
+import type {Ng2RComponent, Ng2RSearchResult} from '../generated/SearchResult'
+import {Ng2RSearchOptions} from '../generated/CliArgs'
 
-export default function searchCmd({ file, cwd }: CliArgs): void {
-    const fileContent = fs.readFileSync(path.join(cwd, file), 'utf-8')
-    const components = search(fileContent, { file })
+export default function searchCmd({file}: Ng2RSearchOptions): void {
+    const fileContent = fs.readFileSync(file, 'utf-8')
+    const components = search(fileContent, {file})
     if (!components) {
         throw Error(`Could not find components in ${file}`)
     }
@@ -23,5 +22,5 @@ export default function searchCmd({ file, cwd }: CliArgs): void {
             } satisfies Ng2RComponent)
     )
 
-    onComplete({ result })
+    onComplete({result} satisfies Ng2RSearchResult)
 }
