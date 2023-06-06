@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/maxbilbow/angularjs2react-cli#readme",
   "devDependencies": {
-    "@ng2react/core": "^1.6.0",
+    "@ng2react/core": "^1.6.1",
     "@types/jest": "^29.5.2",
     "@types/lodash": "^4.14.195",
     "@types/node": "^18.16.16",

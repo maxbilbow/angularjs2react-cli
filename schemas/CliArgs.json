@@ -57,7 +57,7 @@
       "type": "string",
       "enum": [
         "gpt-4",
-        "gpt-3-turbo"
+        "gpt-3.5-turbo"
       ]
     },
     "search": {
