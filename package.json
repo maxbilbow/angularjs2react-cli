@@ -1,6 +1,6 @@
 {
   "name": "@ng2react/cli",
-  "version": "1.4.0-rc.0",
+  "version": "1.4.0",
   "description": "## Related projects to Investigate * [react-in-angularjs](https://github.com/xjpro/react-in-angularjs)",
   "type": "commonjs",
   "main": "index.cjs",
