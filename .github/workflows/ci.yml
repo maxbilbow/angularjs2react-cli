@@ -10,6 +10,7 @@ on:
 
 jobs:
     build:
+        name: Build & Test CLI
         runs-on: ubuntu-latest
 
         strategy:
@@ -46,6 +47,7 @@ jobs:
               run: npm run build
     java_build:
         # Run mvn install on ./libraries/java
+        name: Build & Test Java Adapter
         runs-on: ubuntu-latest
         needs: build
         steps:
